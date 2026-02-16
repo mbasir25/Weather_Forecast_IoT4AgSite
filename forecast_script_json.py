@@ -99,7 +99,7 @@ def generate_json(wd):
             variable_name = variable_name+'('+units+')'
             
             # Filter the data based on the specified latitude and longitude range
-            filter_condition = (lats == 40.491971) and (lons == -86.993235)
+            filter_condition = (lats == 40.491971) & (lons == -86.993235)
             values_filtered = values[filter_condition]
 
             # Calculate the average value for the filtered region
