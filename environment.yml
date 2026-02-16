@@ -1,0 +1,9 @@
+name: weather-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pygrib
+  - pandas
+  - requests
+  - libtiff  # ✅ This fixes the missing shared object error

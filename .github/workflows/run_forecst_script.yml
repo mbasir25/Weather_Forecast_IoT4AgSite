@@ -1,0 +1,37 @@
+name: Run Python Script Daily
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # Daily at 5 AM UTC
+  workflow_dispatch:
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: 3.8
+          environment-file: environment.yml
+          activate-environment: weather-env
+          auto-activate-base: false
+
+      - name: Run forecast script using conda
+        run: |
+          conda run -n weather-env python ./forecast_script_json.py
+
+      - name: Commit and push generated files
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add weatherdata/news_refs/forecasted_weather.json
+          git commit -m "Add weather forecast data"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
