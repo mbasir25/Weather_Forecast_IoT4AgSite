@@ -8,8 +8,8 @@ Git clone first!
 
 Change these two variables for desired Latitude and Longitude 
  --- target point: forecast_script_json.py  ----
-    TARGET_LAT = 40.491971
-    TARGET_LON = -86.993235
+    TARGET_LAT = .......
+    TARGET_LON = .......
 
 -----------------Permissions should be given for the YML file to take actions. 
 DO:
